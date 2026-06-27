@@ -169,37 +169,22 @@ After installing all the dependencies continue with the [Install Kickstart](#ins
 
 #### Windows Installation
 
-<details><summary>Windows with Microsoft C++ Build Tools and CMake</summary>
-Kickstart's default config is make-only for `telescope-fzf-native.nvim`.
-If `make` is unavailable, the plugin is skipped.
+<details><summary>Windows with fzf</summary>
+The config now uses `fzf-lua` which requires the `fzf` binary to be installed.
 
-Recommended: install `make` (see the chocolatey section below).
+Install `fzf` on Windows using chocolatey:
 
-If you want a CMake-only setup, customize `init.lua` in two places:
-
-1. Include `telescope-fzf-native.nvim` when `cmake` is available:
-
-```lua
-if vim.fn.executable 'make' == 1 or vim.fn.executable 'cmake' == 1 then
-  table.insert(plugins, gh 'nvim-telescope/telescope-fzf-native.nvim')
-end
+```
+choco install fzf
 ```
 
-2. In the `PackChanged` hook, use CMake when `make` is unavailable:
+Or using scoop:
 
-```lua
-if name == 'telescope-fzf-native.nvim' then
-  if vim.fn.executable 'make' == 1 then
-    run_build(name, { 'make' }, ev.data.path)
-  elseif vim.fn.executable 'cmake' == 1 then
-    run_build(name, { 'cmake', '-S.', '-Bbuild', '-DCMAKE_BUILD_TYPE=Release' }, ev.data.path)
-    run_build(name, { 'cmake', '--build', 'build', '--config', 'Release', '--target', 'install' }, ev.data.path)
-  end
-  return
-end
+```
+scoop install fzf
 ```
 
-See `telescope-fzf-native` documentation for [build details](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation).
+See the [fzf-lua repository](https://github.com/ibhagwan/fzf-lua) for more details.
 </details>
 <details><summary>Windows with gcc/make using chocolatey</summary>
 Alternatively, one can install gcc and make which don't require changing the config,
