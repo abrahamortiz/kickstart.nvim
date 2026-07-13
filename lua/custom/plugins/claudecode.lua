@@ -4,6 +4,7 @@ vim.pack.add {
 }
 
 -- `config = true` in lazy just means "call setup with no args"
+require('snacks').setup {}
 require('claudecode').setup()
 
 -- keys -> plain keymaps
