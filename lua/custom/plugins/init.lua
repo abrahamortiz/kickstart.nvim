@@ -3,6 +3,10 @@
 --
 -- See the kickstart.nvim README for more information
 
+-- Move lines up/down with Option/Alt + j/k (count-aware: e.g. 3<A-k> moves 3 lines up)
+vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<CR>==", { desc = 'Move line down' })
+vim.keymap.set('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<CR>==", { desc = 'Move line up' })
+
 -- Iterate over all Lua files in the plugins directory and load them
 local plugins_dir = vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'custom', 'plugins')
 for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
