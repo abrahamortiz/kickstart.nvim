@@ -3,11 +3,17 @@
 --
 -- See the kickstart.nvim README for more information
 
+-- Navigate out of a terminal window with <C-hjkl>
+vim.keymap.set('t', '<C-h>', '<C-\\><C-n><C-w>h', { desc = 'Move focus to the left window' })
+vim.keymap.set('t', '<C-j>', '<C-\\><C-n><C-w>j', { desc = 'Move focus to the lower window' })
+vim.keymap.set('t', '<C-k>', '<C-\\><C-n><C-w>k', { desc = 'Move focus to the upper window' })
+vim.keymap.set('t', '<C-l>', '<C-\\><C-n><C-w>l', { desc = 'Move focus to the right window' })
+
 -- Move lines up/down with Option/Alt + j/k (count-aware: e.g. 3<A-k> moves 3 lines up)
 vim.keymap.set('n', '<A-j>', "<cmd>execute 'move .+' . v:count1<CR>==", { desc = 'Move line down' })
 vim.keymap.set('n', '<A-k>', "<cmd>execute 'move .-' . (v:count1 + 1)<CR>==", { desc = 'Move line up' })
 
--- Open lazygit (uses snacks.nvim, already set up in claudecode.lua)
+-- Open lazygit (uses snacks.nvim)
 vim.keymap.set('n', '<leader>g', function() Snacks.lazygit() end, { desc = 'Lazygit' })
 
 -- Iterate over all Lua files in the plugins directory and load them
