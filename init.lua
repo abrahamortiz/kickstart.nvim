@@ -698,6 +698,7 @@ do
       local enabled_filetypes = {
         typescript = true,
         lua = true,
+        json = true,
         -- python = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
@@ -714,6 +715,7 @@ do
       lua = { 'stylua' },
       javascript = { 'prettier' },
       typescript = { 'prettier' },
+      json = { 'prettier' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
@@ -801,7 +803,7 @@ do
     -- the rust implementation via `'prefer_rust_with_warning'`
     --
     -- See `:help blink-cmp-config-fuzzy` for more information
-    fuzzy = { implementation = 'lua' },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
 
     -- Shows a signature help window while you type arguments for a function
     signature = { enabled = true },
